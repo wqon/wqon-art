@@ -1,5 +1,5 @@
 {
-  "name": "",
+  "name": "wqon-art",
   "type": "module",
   "version": "0.0.1",
   "engines": {
@@ -9,12 +9,18 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
+    "deploy": "astro build && wrangler types && wrangler pages deploy ./dist",
     "astro": "astro"
   },
   "dependencies": {
+    "@astrojs/markdown-satteri": "^0.4.0",
+    "@astrojs/mdx": "^8.0.0",
     "astro": "^7.3.1"
   },
   "allowScripts": {
     "esbuild": true
+  },
+  "devDependencies": {
+    "wrangler": "^4.129.0"
   }
 }
