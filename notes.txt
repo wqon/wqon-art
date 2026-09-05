@@ -1,0 +1,20 @@
+@media /* mobile behavior */ (pointer: coarse) {
+}
+
+@media /* mini */ (min-width: 1px) and (max-width: 480px) {
+}
+
+@media /* mobile */ (min-width: 1px) and (max-width: 768px) {
+}
+
+@media /* tablet */ (min-width: 769px) and (max-width: 1024px) {
+}
+
+@media /* notebook */ (min-width: 1025px) and (max-width: 1440px) {
+}
+
+@media /* desktop */ (min-width: 1440px) and (max-width: 1920px) {
+}
+
+@media /* tv, big screen */ (min-width: 1921px) {
+}
