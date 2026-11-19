@@ -7,10 +7,8 @@ import mdx from "@astrojs/mdx";
 export default defineConfig({
   output: "static",
   trailingSlash: "ignore",
-
   server: {
     port: 6363,
   },
-
   integrations: [mdx()],
 });
