@@ -1,5 +1,4 @@
 *
-.DS_Store
 
 !.gitignore
 !README.md
@@ -19,3 +18,5 @@
 !raw/**
 !src
 !src/**
+
+.DS_Store
