@@ -1,0 +1,44 @@
+---
+import "./global.css";
+import "./fontface.css";
+import Head from "../components/Head.astro";
+import Menu from "../components/Menu.astro";
+import Promo from "../components/Promo.astro";
+import Footer from "../components/Footer.astro";
+import Loader from "../components/Loader.astro";
+import Cursor from "../components/Cursor.astro";
+
+const { title, description, theme, canon, ogTitle, ogDescription, ogImage } =
+    Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+    <Head
+        title={title}
+        description={description}
+        theme={theme}
+        canon={canon}
+        ogTitle={ogTitle}
+        ogDescription={ogDescription}
+        ogImage={ogImage}
+    />
+    <body>
+        <main>
+            <div class="wrapper">
+                <div class="header">
+                    <Menu />
+                </div>
+                <div class="content">
+                    <Promo />
+                    <>
+                        <slot />
+                    </>
+                </div>
+            </div>
+            <Footer />
+        </main>
+        <Loader />
+        <Cursor />
+    </body>
+</html>
