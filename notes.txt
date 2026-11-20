@@ -15,3 +15,5 @@
 
 @media /* tv, big screen */ (min-width: 1921px) {
 }
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
