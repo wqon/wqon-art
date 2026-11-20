@@ -1,0 +1,38 @@
+@font-face /* minibyte */ {
+    font-family: "minibyte";
+    src: url("https://files.wqon.art/fonts/minibyte-regular.woff2");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+    font-feature-setting: "salt";
+}
+
+@font-face /* Hawthorn Serif */ {
+    font-family: "Hawthorn Serif";
+    src: url("https://files.wqon.art/fonts/Hawthorn-Serif.woff2");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face /* Hawthorn Sans */ {
+    font-family: "Hawthorn Sans";
+    src: url("https://files.wqon.art/fonts/Hawthorn-Sans.woff2");
+    font-weight: 400;
+    font-style: normal;
+    font-dispaly: swap;
+}
+
+@font-face /* Mellow */ {
+    font-family: "Mellow";
+    src: url("https://files.wqon.art/fonts/Mellow.woff2");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face /* Mellow Void */ {
+    font-family: "Mellow Void";
+    src: url("https://files.wqon.art/fonts/Mellow-Void.woff2");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
