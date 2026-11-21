@@ -1,7 +1,7 @@
 @media /* mobile behavior */ (pointer: coarse) {
 }
 
-@media /* mobile */ (max-width: 768px) {
+@media /* mobile */ (width >= 768px) {
 }
 
 @media /* tablet */ (min-width: 769px) and (max-width: 1024px) {
