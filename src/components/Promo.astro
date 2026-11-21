@@ -1,0 +1,85 @@
+---
+const promo = await fetch("https://files.wqon.art/promo.json").then((res) =>
+    res.json(),
+);
+
+const x = 2;
+const promoMap = promo.filter((promo: any) => promo.active);
+
+const divider = "•";
+---
+
+<aside class="promo-wrapper">
+    <div class="promo-mask">
+        <div class="promo">
+            {Array.from({ length: x }, () => (
+                <div class="promo-content" aria-label="hidden">
+                    {promoMap.map((promo: any) => (
+                        <>
+                            <a
+                                href={promo.href}
+                                target={promo.blank ? "_blank" : "_self"}
+                                data-cursor="pointer"
+                            >
+                                <span>{promo.title}</span>
+                            </a>
+                            <span>{divider}</span>
+                        </>
+                    ))}
+                </div>
+            ))}
+        </div>
+    </div>
+</aside>
+
+<style>
+    .promo-wrapper {
+        width: 100%;
+        height: 100%;
+        background: var(--light);
+        border-bottom: var(--border);
+        overflow-x: hidden;
+        user-select: none;
+    }
+
+    .promo-mask {
+        mask-image: linear-gradient(
+            to right,
+            transparent,
+            black 16%,
+            black 84%,
+            transparent
+        );
+        mask-size: 100%;
+    }
+    .promo {
+        --promogap: var(--32);
+        width: max-content;
+        height: var(--headergap);
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        animation: 20s linear infinite Scroll;
+    }
+    @keyframes Scroll {
+        to {
+            translate: -50% 0;
+        }
+    }
+    .promo-wrapper:hover .promo {
+        animation-play-state: paused;
+    }
+    .promo-content {
+        display: inline-flex;
+        gap: var(--promogap);
+        color: var(--black);
+        font-family: "Hawthorn Serif", serif;
+        font-size: var(--l);
+        white-space: pre;
+        padding-right: var(--promogap);
+        padding-bottom: var(--4);
+    }
+    a:hover {
+        color: var(--subaccent);
+    }
+</style>
