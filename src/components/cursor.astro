@@ -1,0 +1,65 @@
+<div class="cursor"></div>
+
+<style>
+    .cursor {
+        height: 7px;
+        width: 7px;
+        background: transparent url("/assets/cursor.png") 0 0 no-repeat;
+        image-rendering: pixelated;
+        position: fixed;
+        transform: scale(3);
+        pointer-events: none;
+        z-index: 100;
+    }
+    .cursor.pointer {
+        height: 7px;
+        width: 11px;
+        background-position: -7px 0;
+    }
+    .cursor.text {
+        height: 7px;
+        width: 5px;
+        background-position: -18px 0;
+    }
+    .cursor.tickling {
+        height: 7px;
+        width: 38px;
+        background-position: -23px 0;
+        animation: 800ms steps(8) infinite Tickle;
+    }
+
+    @keyframes Tickle {
+        from {
+            background-position: -23px 0;
+        }
+        to {
+            background-position: -327px 0;
+        }
+    }
+
+    @media /* mobile behavior */ (pointer: coarse) {
+        .cursor {
+            display: none;
+        }
+    }
+</style>
+
+<script is:inline>
+    const cursor = document.querySelector(".cursor");
+    const offsetX = 6;
+    const offsetY = 6;
+
+    document.addEventListener("mousemove", (e) => {
+        cursor.style.left = e.clientX + offsetX + "px";
+        cursor.style.top = e.clientY + offsetY + "px";
+    });
+
+    document.querySelectorAll("[data-cursor]").forEach((el) => {
+        el.addEventListener("mouseenter", () => {
+            cursor.classList.add(el.dataset.cursor);
+        });
+        el.addEventListener("mouseleave", () => {
+            cursor.classList.remove(el.dataset.cursor);
+        });
+    });
+</script>
