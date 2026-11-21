@@ -1,0 +1,42 @@
+<a class="logotype" href="https://wqon.link/" data-cursor="pointer">
+    <img
+        class="static"
+        src="/assets/logotype.png"
+        alt="WQON - Pixel, Type & Dev"
+    />
+    <img
+        class="hover"
+        src="/assets/logotype_hover.png"
+        alt="WQON - Pixel, Type & Dev"
+    />
+</a>
+
+<style>
+    .logotype {
+        display: block;
+        height: var(--headergap);
+        background: var(--light);
+        padding: var(--logopad);
+    }
+    .static,
+    .hover {
+        width: auto;
+        height: 100%;
+        margin: 0 auto;
+    }
+    .static {
+        display: block;
+    }
+    .hover {
+        display: none;
+    }
+    .logotype:hover .static {
+        display: none;
+    }
+    .logotype:hover .hover {
+        display: block;
+    }
+    .logotype:active :is(.static, .hover) {
+        transform: var(--scale);
+    }
+</style>
