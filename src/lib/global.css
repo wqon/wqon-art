@@ -1,0 +1,135 @@
+:root {
+    --white: #fffaf5;
+    --light: #ffba63;
+    --accent: #f96280;
+    --subaccent: #0c18c0;
+    --passive: #63abff;
+    --subpassive: #6b5cf5;
+    --black: #161860;
+    --dark: #020226;
+    --void: rgba(0, 0, 0, 0);
+    --h3: clamp(2rem, 0.8571rem + 2.381dvw, 3rem);
+    --h2: clamp(2.5rem, 1.3571rem + 2.381dvw, 3.5rem);
+    --h1: clamp(3rem, 1.8571rem + 2.381dvw, 4rem);
+    --s: clamp(1rem, 0.7143rem + 0.5952dvw, 1.25rem);
+    --m: clamp(1.25rem, 0.9643rem + 0.5952dvw, 1.5rem);
+    --l: clamp(1.5rem, 1.2143rem + 0.5952dvw, 1.75rem);
+    --gap: clamp(0.5rem, -0.0714rem + 1.1905dvw, 1rem);
+    --sitegap: clamp(2rem, -0.2857rem + 4.7619dvw, 4rem);
+    --logozoom: 6;
+    --logopad: calc((var(--logozoom) * 1px) * 2);
+    --headergap: calc((var(--logozoom) * 7px) + (var(--logopad) * 2));
+    --scale: scale(1.1);
+    --1: 0.064rem;
+    --2: 0.125rem;
+    --4: 0.25rem;
+    --8: 0.5rem;
+    --16: 1rem;
+    --32: 2rem;
+    --48: 3rem;
+    --64: 4rem;
+    --80: 5rem;
+    --96: 6rem;
+    --border: 1px solid var(--dark);
+    --r: 4px;
+}
+
+/* -------- STYLE BASE -------- */
+::selection {
+    background: var(--accent);
+    color: var(--subaccent);
+}
+* {
+    box-sizing: border-box;
+    scrollbar-color: var(--dark) transparent;
+    scroll-behavior: smooth;
+    padding: 0;
+    margin: 0;
+}
+html {
+    font-size: 16px;
+    font-family: "Hawthorn Sans", sans-serif;
+    font-weight: 400;
+    line-height: normal;
+}
+html * {
+    cursor: inherit;
+}
+html.js-ready * {
+    cursor: none !important;
+}
+body {
+    background: var(--dark);
+    color: var(--dark);
+    font-size: var(--m);
+    overflow-x: hidden;
+}
+main {
+    width: 100%;
+    max-width: 100svw;
+    white-space: normal;
+    word-spacing: normal;
+}
+
+/* ———————— SIZING ———————— */
+h3,
+.h3 {
+    font-size: var(--h3);
+}
+h2,
+.h2 {
+    font-size: var(--h2);
+}
+h1,
+.h1 {
+    font-size: var(--h1);
+}
+.s {
+    font-size: var(--s);
+}
+.m {
+    font-size: var(--m);
+}
+.l {
+    font-size: var(--l);
+}
+.spacer {
+    height: var(--gap);
+}
+
+/* ———————— ELEMENTS ———————— */
+:is(h1, h2, h3) {
+    font-family: "Mellow";
+}
+
+p {
+    display: block;
+    font-size: var(--m);
+}
+
+a {
+    display: inline-block;
+    color: var(--white);
+    text-decoration: none;
+    cursor: pointer;
+}
+a:visited {
+    color: inherit;
+}
+
+img {
+    image-rendering: pixelated;
+    user-select: none;
+    pointer-events: none;
+}
+.hd {
+    image-rendering: smooth;
+}
+
+/* -------- MODS -------- */
+.seo {
+    position: absolute;
+    visibility: hidden;
+    pointer-events: none;
+    user-select: none;
+}
