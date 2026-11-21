@@ -2,17 +2,23 @@
 import "./global.css";
 import "./fontface.css";
 import Head from "../components/Head.astro";
+import Logo from "../components/Logo.astro";
 import Menu from "../components/Menu.astro";
+import Logotype from "../components/Logotype.astro";
 import Promo from "../components/Promo.astro";
 import Footer from "../components/Footer.astro";
 import Loader from "../components/Loader.astro";
 import Cursor from "../components/Cursor.astro";
+import Border from "../components/Border.astro";
 
 const { title, description, theme, canon, ogTitle, ogDescription, ogImage } =
     Astro.props;
 ---
 
 <!doctype html>
+<!-- Designed & developed with <3 by WQON using human intelligence. -->
+<!---->
+<!-- For technical details, see https://github.com/wqon/wqon-art. -->
 <html lang="en">
     <Head
         title={title}
@@ -25,20 +31,79 @@ const { title, description, theme, canon, ogTitle, ogDescription, ogImage } =
     />
     <body>
         <main>
-            <div class="wrapper">
-                <div class="header">
-                    <Menu />
-                </div>
-                <div class="content">
-                    <Promo />
-                    <>
+            <div class="mobile">
+                <div class="wrapper">
+                    <header>
+                        <Logo />
+                        <Promo />
+                        <Menu />
+                    </header>
+                    <div class="content">
                         <slot />
-                    </>
+                    </div>
                 </div>
+                <Footer />
             </div>
-            <Footer />
+        </main>
+        <main>
+            <div class="desktop">
+                <div class="wrapper">
+                    <header>
+                        <Logo />
+                        <Menu />
+                    </header>
+                    <div class="content">
+                        <Logotype />
+                        <Promo />
+                        <slot />
+                    </div>
+                </div>
+                <Footer />
+            </div>
         </main>
         <Loader />
         <Cursor />
+        <Border />
     </body>
 </html>
+
+<style>
+    .mobile,
+    .desktop {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        background: var(--passive);
+        margin: var(--1);
+    }
+
+    .desktop {
+        display: none;
+    }
+
+    .wrapper {
+        min-height: 100svh;
+        display: flex;
+        flex-direction: column;
+    }
+    header {
+        max-height: var(--headergap);
+        position: sticky;
+        top: 1px;
+        display: grid;
+        grid-template: 1fr / auto 1fr auto;
+    }
+    .content {
+        display: block;
+    }
+
+    @media (width >= 768px) {
+        .mobile {
+            display: none;
+        }
+
+        .desktop {
+            display: block;
+        }
+    }
+</style>
