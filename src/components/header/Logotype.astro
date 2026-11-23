@@ -1,4 +1,4 @@
-<a class="logotype" href="https://wqon.link/" data-cursor="pointer">
+<a id="Logotype" class="logotype" href="https://wqon.link/" data-cursor="pointer">
     <img
         class="static"
         src="/assets/logotype.png"
@@ -13,15 +13,17 @@
 
 <style>
     .logotype {
-        display: block;
-        height: var(--headergap);
+        width: 100%;
+        height: 100%;
+        display: grid;
+        justify-content: center;
+        align-items: center;
         background: var(--light);
-        padding: var(--logopad);
+        cursor: pointer;
     }
     .static,
     .hover {
-        width: auto;
-        height: 100%;
+        zoom: 4;
         margin: 0 auto;
     }
     .static {
@@ -38,5 +40,13 @@
     }
     .logotype:active :is(.static, .hover) {
         transform: var(--scale);
+    }
+
+    @media /* desktop */ (width >= 768px) {
+        .static,
+        .hover {
+            zoom: 2;
+            margin: 0;
+        }
     }
 </style>
