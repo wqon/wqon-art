@@ -1,4 +1,5 @@
 <aside class="border" />
+<aside class="pocket-border" />
 
 <style>
     .border {
@@ -7,6 +8,17 @@
         border: var(--border);
         pointer-events: none;
         user-select: none;
-        z-index: 128;
+    }
+
+    @media /* mobile */ (width <= 768px) {
+        .pocket-border {
+            position: fixed;
+            top: calc(var(--headergap) + 1px);
+            left: 0;
+            right: 0;
+            border-bottom: var(--border);
+            pointer-events: none;
+            user-select: none;
+        }
     }
 </style>
