@@ -1,0 +1,95 @@
+<h1 class="seo">WQON - Pixel Artist, Type Designer & Web Developer</h1>
+
+<a id="Logo" class="logo" href="/" data-cursor="pointer">
+    <div class="wn home" />
+</a>
+
+<style>
+    .logo,
+    .wn {
+        cursor: pointer;
+    }
+    .logo {
+        display: block;
+        width: max-content;
+        aspect-ratio: 1;
+        background: var(--accent);
+        padding: var(--logopad);
+    }
+    .wn {
+        width: 7px;
+        aspect-ratio: 1;
+        mask-image: url("/assets/logo.png");
+        mask-size: 7px 98px;
+        mask-position: 0px 0px;
+        mask-repeat: no-repeat;
+        image-rendering: pixelated;
+        zoom: var(--logozoom);
+        background: var(--subaccent);
+    }
+    .logo:hover .wn {
+        animation: 700ms steps(7, end) forwards toHome;
+    }
+    :global(.js-ready) .logo:hover .wn {
+        animation: none;
+    }
+    @keyframes toHome {
+        from {
+            mask-position: 0px 0px;
+        }
+        to {
+            mask-position: 0px -49px;
+        }
+    }
+    .logo:active .wn {
+        mask-position: 0px -49px !important;
+        transform: var(--scale);
+    }
+
+    .home,
+    :global(.js-ready) .logo:hover .home {
+        mask-position: 0px -49px;
+        animation: 600ms steps(6, end) 1s forwards toWN;
+    }
+    @keyframes toWN {
+        from {
+            mask-position: 0px -49px;
+        }
+        to {
+            mask-position: 0px -91px;
+        }
+    }
+</style>
+
+<script is:inline>
+    document.querySelectorAll(".logo").forEach((logo) => {
+        const wn = logo.querySelector(".wn");
+
+        setTimeout(() => {
+            wn.classList.remove("home");
+            wn.style.setProperty("mask-position", "0px 0px");
+
+            let animation;
+
+            logo.addEventListener("mouseenter", () => {
+                animation = wn.animate(
+                    [
+                        { maskPosition: "0px 0px" },
+                        { maskPosition: "0px -49px" },
+                    ],
+                    {
+                        duration: 700,
+                        easing: "steps(7, end)",
+                        fill: "forwards",
+                    },
+                );
+            });
+
+            logo.addEventListener("mouseleave", () => {
+                if (animation) {
+                    animation.reverse();
+                }
+            });
+        }, 1700);
+    });
+</script>
