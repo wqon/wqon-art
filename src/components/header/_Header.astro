@@ -1,0 +1,94 @@
+---
+import Logo from "./Logo.astro";
+import Promo from "./Promo.astro";
+import PocketMenu from "./PocketMenu.astro";
+import Menu from "./Menu.astro";
+---
+
+<header class="mobile">
+    <Logo />
+    <Promo />
+    <PocketMenu />
+</header>
+
+<header class="desktop">
+    <Logo />
+    <Menu />
+</header>
+
+<style>
+    .mobile,
+    .desktop,
+    :global(.bar) {
+        user-select: none;
+    }
+
+    /* -------- Z -------- */
+    .mobile {
+        z-index: 5;
+    }
+    :global(#Logo) {
+        z-index: 4;
+    }
+    :global(#Promo) {
+        z-index: 3;
+    }
+    :global(#PocketMenu .pocket) {
+        z-index: 2;
+    }
+    :global(#PocketMenu .menu) {
+        z-index: 1;
+    }
+
+    @media /* mobile */ (width <= 768px) {
+        .desktop {
+            display: none;
+        }
+
+        .mobile {
+            position: sticky;
+            top: 1px;
+            display: grid;
+            grid-template: var(--headergap) / auto 1fr auto;
+        }
+
+        /* -------- BORDERS -------- */
+        .mobile {
+            border-bottom: var(--border);
+        }
+        :global(#Promo) {
+            border-left: var(--border);
+            border-right: var(--border);
+        }
+        :global(#Logotype) {
+            border-bottom: var(--border);
+        }
+    }
+
+    @media /* desktop */ (width > 768px) {
+        .mobile {
+            display: none;
+        }
+
+        .desktop {
+            height: 100svh;
+            position: sticky;
+            top: 1px;
+            bottom: 1px;
+            display: grid;
+            grid-template: auto 1fr / var(--headergap);
+        }
+
+        /* -------- BORDERS -------- */
+        .desktop {
+            border-right: var(--border);
+        }
+        :global(#Logotype) {
+            border-right: var(--border);
+        }
+        :global(.bar) {
+            box-sizing: content-box;
+            border-bottom: var(--border);
+        }
+    }
+</style>
