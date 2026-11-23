@@ -7,5 +7,69 @@
     "title": "WQON - Pixel, Type & Dev",
     "description": "Text.",
     "image": "https://wqon.art/og.png/"
+  },
+  "menu": {
+    "header": [
+      {
+        "class": "portfolio",
+        "title": "PORTFOLIO",
+        "href": "/",
+        "blank": false,
+        "active": true
+      },
+      {
+        "class": "fonts",
+        "title": "FONTS",
+        "href": "https://wqonart.itch.io/",
+        "blank": false,
+        "active": true
+      },
+      {
+        "class": "hire-me",
+        "title": "HIRE ME",
+        "href": "/hire-me/",
+        "blank": false,
+        "active": true
+      },
+      {
+        "class": "posts",
+        "title": "POSTS",
+        "href": "/posts/",
+        "blank": false,
+        "active": true
+      }
+    ],
+    "plus": [
+      {
+        "class": "about",
+        "title": "ABOUT",
+        "href": "/about/",
+        "blank": false,
+        "active": true
+      },
+      {
+        "class": "support",
+        "title": "SUPPORT",
+        "href": "/support/",
+        "blank": false,
+        "active": true
+      }
+    ],
+    "footer": [
+      {
+        "class": "privacy",
+        "title": "Privacy",
+        "href": "/privacy/",
+        "blank": false,
+        "active": true
+      },
+      {
+        "class": "terms",
+        "title": "Terms",
+        "href": "/terms/",
+        "blank": false,
+        "active": true
+      }
+    ]
   }
 }
