@@ -1,19 +1,19 @@
 @media /* mobile behavior */ (pointer: coarse) {
 }
 
-@media /* mobile */ (width >= 768px) {
+@media /* mobile */ (width <= 768px) {
 }
 
-@media /* tablet */ (min-width: 769px) and (max-width: 1024px) {
+@media /* desktop */ (width > 768px) {
 }
 
-@media /* notebook */ (min-width: 1025px) and (max-width: 1440px) {
+@media /* tablet */ (width > 1024px) {
 }
 
-@media /* desktop */ (min-width: 1440px) and (max-width: 1920px) {
+@media /* notebook */ (width > 1440px) {
 }
 
-@media /* tv, big screen */ (min-width: 1921px) {
+@media /* tv, big screen */ (width > 1920px) {
 }
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
