@@ -2,31 +2,30 @@
 const promo = await fetch("https://files.wqon.art/promo.json").then((res) =>
     res.json(),
 );
-const config = await fetch("https://files.wqon.art/promo.config.json").then(
-    (res) => res.json(),
-);
-const x = config.x;
+const x = promo.config.x;
 ---
 
 <aside id="Promo" class="wrapper">
     <div class="mask">
-        <div class="promo" style={`animation-duration: ${config.time}`}>
+        <div class="promo" style={`animation-duration: ${promo.config.time}`}>
             {Array.from({ length: x }, () => (
                 <div class="content" aria-label="hidden">
                     {promo.map(
                         (promo: any) =>
-                            promo.active && (
+                            promo.links.active && (
                                 <>
                                     <a
-                                        href={promo.href}
+                                        href={promo.links.href}
                                         target={
-                                            promo.blank ? "_blank" : "_self"
+                                            promo.links.blank
+                                                ? "_blank"
+                                                : "_self"
                                         }
                                         data-cursor="pointer"
                                     >
-                                        <span>{promo.title}</span>
+                                        <span>{promo.links.title}</span>
                                     </a>
-                                    <span>{config.divider}</span>
+                                    <span>{promo.config.divider}</span>
                                 </>
                             ),
                     )}
