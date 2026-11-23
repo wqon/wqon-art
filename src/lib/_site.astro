@@ -2,10 +2,9 @@
 import "./global.css";
 import "./fontface.css";
 import Head from "../components/Head.astro";
-import Logo from "../components/Logo.astro";
-import Menu from "../components/Menu.astro";
-import Logotype from "../components/Logotype.astro";
-import Promo from "../components/Promo.astro";
+import Header from "../components/header/_Header.astro";
+import Logotype from "../components/header/Logotype.astro";
+import Promo from "../components/header/Promo.astro";
 import Footer from "../components/Footer.astro";
 import Loader from "../components/Loader.astro";
 import Cursor from "../components/Cursor.astro";
@@ -33,11 +32,7 @@ const { title, description, theme, canon, ogTitle, ogDescription, ogImage } =
         <main>
             <div class="mobile">
                 <div class="wrapper">
-                    <header>
-                        <Logo />
-                        <Promo />
-                        <Menu />
-                    </header>
+                    <Header />
                     <div class="content">
                         <slot />
                     </div>
@@ -48,13 +43,12 @@ const { title, description, theme, canon, ogTitle, ogDescription, ogImage } =
         <main>
             <div class="desktop">
                 <div class="wrapper">
-                    <header>
-                        <Logo />
-                        <Menu />
-                    </header>
+                    <Header />
                     <div class="content">
-                        <Logotype />
-                        <Promo />
+                        <div class="bar">
+                            <Logotype />
+                            <Promo />
+                        </div>
                         <slot />
                     </div>
                 </div>
@@ -68,42 +62,75 @@ const { title, description, theme, canon, ogTitle, ogDescription, ogImage } =
 </html>
 
 <style>
-    .mobile,
-    .desktop {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        background: var(--passive);
-        margin: var(--1);
-    }
-
-    .desktop {
-        display: none;
-    }
-
-    .wrapper {
-        min-height: 100svh;
-        display: flex;
-        flex-direction: column;
-    }
-    header {
-        max-height: var(--headergap);
-        position: sticky;
-        top: 1px;
-        display: grid;
-        grid-template: 1fr / auto 1fr auto;
-    }
     .content {
-        display: block;
+        background: var(--white);
+        color: var(--dark);
     }
 
-    @media (width >= 768px) {
+    /* -------- Z -------- */
+    :global(.border) {
+        z-index: 256;
+    }
+    :global(.cursor) {
+        z-index: 128;
+    }
+    :global(footer) {
+        z-index: 64;
+    }
+    :global(.pocket-border) {
+        z-index: 32;
+    }
+    .wrapper {
+        z-index: 1;
+    }
+
+    @media /* mobile */ (width <= 768px) {
+        .desktop {
+            display: none;
+        }
+
+        .mobile {
+            display: flex;
+            flex-direction: column;
+            margin: var(--1);
+        }
+        .wrapper {
+            min-height: 100svh;
+            display: flex;
+            flex-direction: column;
+        }
+        .content {
+            flex: 1;
+        }
+    }
+
+    @media /* desktop */ (width > 768px) {
         .mobile {
             display: none;
         }
 
         .desktop {
-            display: block;
+            display: flex;
+            flex-direction: column;
+            margin: var(--1);
+        }
+        .wrapper {
+            min-height: 100svh;
+            display: flex;
+            flex-direction: row;
+        }
+        .bar {
+            height: var(--headergap);
+            position: sticky;
+            top: 1px;
+            display: grid;
+            grid-template: auto / auto 1fr;
+        }
+        :global(#Logotype) {
+            padding: 0 var(--16);
+        }
+        .content {
+            flex: 1;
         }
     }
 </style>
