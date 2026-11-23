@@ -1,0 +1,110 @@
+---
+import config from "../../config.json";
+---
+
+<nav id="Menu">
+    <div class="menu">
+        {config.menu.header.map(
+            (link) =>
+                link.active && (
+                    <a
+                        class={
+                            Astro.url.pathname === link.href
+                                ? "pageActive"
+                                : undefined
+                        }
+                        href={
+                            Astro.url.pathname === link.href
+                                ? undefined
+                                : link.href
+                        }
+                        target={link.blank ? "_blank" : "_self"}
+                        data-cursor={
+                            Astro.url.pathname === link.href
+                                ? undefined
+                                : "pointer"
+                        }
+                    >
+                        <span>{link.title}</span>
+                    </a>
+                ),
+        )}
+
+        <label class="plus">
+            <input type="checkbox" class="plus-toggle" />
+            <div class="plus-icon" />
+        </label>
+
+        <div class="plus-menu">
+            {config.menu.plus.map(
+                (link) =>
+                    link.active && (
+                        <a
+                            class={
+                                Astro.url.pathname === link.href
+                                    ? "pageActive"
+                                    : undefined
+                            }
+                            href={
+                                Astro.url.pathname === link.href
+                                    ? undefined
+                                    : link.href
+                            }
+                            target={link.blank ? "_blank" : "_self"}
+                            data-cursor={
+                                Astro.url.pathname === link.href
+                                    ? undefined
+                                    : "pointer"
+                            }
+                        >
+                            <span>{link.title}</span>
+                        </a>
+                    ),
+            )}
+        </div>
+    </div>
+</nav>
+
+<style>
+    .menu {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        background: var(--passive);
+    }
+
+    a {
+        flex: auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: "Mellow Void";
+        font-size: var(--m);
+        writing-mode: vertical-lr;
+        border-top: var(--border);
+    }
+    a,
+    a:hover,
+    .pageActive {
+        color: var(--black);
+    }
+    a:hover,
+    .pageActive {
+        background: var(--light);
+        font-family: "Mellow";
+    }
+    a:active span {
+        transform: var(--negscale);
+    }
+    .pageActive {
+        cursor: default;
+    }
+    .pageActive:active span {
+        transform: none;
+    }
+
+    .plus-menu,
+    .plus {
+        display: none;
+    }
+</style>
