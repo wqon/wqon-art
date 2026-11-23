@@ -5,7 +5,7 @@ import Logotype from "./Logotype.astro";
 
 <nav id="PocketMenu">
     <label class="pocket" data-cursor="pointer">
-        <input class="toggle" type="checkbox" />
+        <input class="toggle" id="PocketToggle" type="checkbox" />
         <div class="icon" />
     </label>
 
@@ -13,7 +13,7 @@ import Logotype from "./Logotype.astro";
         <Logotype />
         <div class="wrapper">
             <label class="mode" data-cursor="pointer">
-                <input class="mode-toggle" type="checkbox" />
+                <input class="mode-toggle" id="ModeToggle" type="checkbox" />
                 <span class="left">I’m left-handed!</span>
                 <span class="right">I’m right-handed!</span>
             </label>
@@ -51,6 +51,7 @@ import Logotype from "./Logotype.astro";
 <style>
     .toggle {
         display: none;
+        pointer-events: auto;
     }
 
     .pocket,
@@ -86,9 +87,9 @@ import Logotype from "./Logotype.astro";
         }
     }
     .toggle:checked ~ .icon {
-        animation: 400ms steps(4, end) forwards toX;
+        animation: 400ms steps(4, end) forwards toPocketX;
     }
-    @keyframes toX {
+    @keyframes toPocketX {
         from {
             mask-position: 0px 0px;
         }
@@ -219,14 +220,3 @@ import Logotype from "./Logotype.astro";
         transform: none;
     }
 </style>
-
-<script is:inline>
-    // pocket-mode memory
-    const handmode = document.querySelector(".pocket-mode input");
-
-    handmode.checked = localStorage.getItem("handmodeLeft") === "true";
-
-    handmode.addEventListener("change", () => {
-        localStorage.setItem("handmodeLeft", handmode.checked);
-    });
-</script>

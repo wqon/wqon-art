@@ -2,7 +2,7 @@
 import config from "../../config.json";
 ---
 
-<nav id="Menu">
+<nav id="Menu" class="wrapper">
     <div class="menu">
         {config.menu.header.map(
             (link) =>
@@ -30,9 +30,9 @@ import config from "../../config.json";
                 ),
         )}
 
-        <label class="plus">
-            <input type="checkbox" class="plus-toggle" />
-            <div class="plus-icon" />
+        <label class="plus" data-cursor="pointer">
+            <input class="toggle" type="checkbox" />
+            <div class="icon" />
         </label>
 
         <div class="plus-menu">
@@ -66,6 +66,10 @@ import config from "../../config.json";
 </nav>
 
 <style>
+    .wrapper {
+        position: relative;
+    }
+
     .menu {
         height: 100%;
         display: flex;
@@ -79,9 +83,12 @@ import config from "../../config.json";
         justify-content: center;
         align-items: center;
         font-family: "Mellow Void";
-        font-size: var(--m);
+        font-size: var(--l);
         writing-mode: vertical-lr;
         border-top: var(--border);
+    }
+    a:last-of-type {
+        border-bottom: var(--border);
     }
     a,
     a:hover,
@@ -89,7 +96,8 @@ import config from "../../config.json";
         color: var(--black);
     }
     a:hover,
-    .pageActive {
+    .pageActive,
+    .menu:has(.plus-menu a.pageActive) .plus {
         background: var(--light);
         font-family: "Mellow";
     }
@@ -103,8 +111,93 @@ import config from "../../config.json";
         transform: none;
     }
 
-    .plus-menu,
-    .plus {
+    .toggle {
         display: none;
     }
+
+    .plus,
+    .icon {
+        cursor: pointer;
+    }
+    .plus {
+        position: relative;
+        display: block;
+        width: max-content;
+        aspect-ratio: 1;
+        background: var(--passive);
+        padding: var(--logopad);
+    }
+    .icon {
+        width: 7px;
+        aspect-ratio: 1;
+        mask-image: url("/assets/plus.png");
+        mask-size: 7px 77px;
+        mask-position: 0px 0px;
+        mask-repeat: no-repeat;
+        image-rendering: pixelated;
+        zoom: var(--logozoom);
+        background: var(--black);
+    }
+    .toggle:checked ~ .icon {
+        animation: 300ms steps(3, end) forwards toPlusX;
+    }
+    @keyframes toPlusX {
+        from {
+            mask-position: 0px -14px;
+        }
+        to {
+            mask-position: 0px -35px;
+        }
+    }
+    .toggle:not(:checked) ~ .icon {
+        animation: 500ms steps(5, end) forwards toPlus;
+    }
+    @keyframes toPlus {
+        from {
+            mask-position: 0px -35px;
+        }
+        to {
+            mask-position: 0px -70px;
+        }
+    }
+    .plus:hover .toggle:not(:checked) ~ .icon {
+        animation: 200ms steps(2, end) forwards toPlusArrow;
+    }
+    @keyframes toPlusArrow {
+        from {
+            mask-position: 0px 0px;
+        }
+        to {
+            mask-position: 0px -14px;
+        }
+    }
+    .icon:active {
+        transform: var(--scale);
+    }
+
+    .plus-menu {
+        width: calc(var(--headergap) + 1px);
+        height: 100%;
+        position: absolute;
+        bottom: var(--headergap);
+        display: flex;
+        flex-direction: column;
+        background: var(--passive);
+        border-right: var(--border);
+        padding-top: var(--headergap);
+        visibility: hidden;
+        translate: -101% 0;
+        transition:
+            translate 200ms ease-out,
+            visibility 0ms 200ms allow-discrete;
+    }
+    .plus:has(.toggle:checked) ~ .plus-menu {
+        visibility: visible;
+        translate: 0 0;
+        transition:
+            translate 200ms ease-out,
+            visibility 0ms allow-discrete;
+    }
 </style>
+
+<script></script>

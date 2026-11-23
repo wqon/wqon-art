@@ -42,6 +42,10 @@
     background: var(--accent);
     color: var(--subaccent);
 }
+:focus-visible {
+    outline: var(--8) solid var(--white);
+    z-index: 512;
+}
 * {
     box-sizing: border-box;
     scrollbar-color: var(--dark) var(--passive);
