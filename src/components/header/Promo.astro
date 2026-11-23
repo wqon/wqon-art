@@ -1,0 +1,85 @@
+---
+const promo = await fetch("https://files.wqon.art/promo.json").then((res) =>
+    res.json(),
+);
+const config = await fetch("https://files.wqon.art/promo.config.json").then(
+    (res) => res.json(),
+);
+const x = config.x;
+---
+
+<aside id="Promo" class="wrapper">
+    <div class="mask">
+        <div class="promo" style={`animation-duration: ${config.time}`}>
+            {Array.from({ length: x }, () => (
+                <div class="content" aria-label="hidden">
+                    {promo.map(
+                        (promo: any) =>
+                            promo.active && (
+                                <>
+                                    <a
+                                        href={promo.href}
+                                        target={
+                                            promo.blank ? "_blank" : "_self"
+                                        }
+                                        data-cursor="pointer"
+                                    >
+                                        <span>{promo.title}</span>
+                                    </a>
+                                    <span>{config.divider}</span>
+                                </>
+                            ),
+                    )}
+                </div>
+            ))}
+        </div>
+    </div>
+</aside>
+
+<style>
+    .wrapper {
+        width: 100%;
+        background: var(--light);
+        overflow-x: hidden;
+    }
+    .mask {
+        mask-image: linear-gradient(
+            to right,
+            transparent,
+            black 16%,
+            black 84%,
+            transparent
+        );
+        mask-size: 100%;
+    }
+    .promo {
+        --promogap: var(--32);
+        width: max-content;
+        height: var(--headergap);
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        animation: 0s linear infinite Scroll;
+    }
+    @keyframes Scroll {
+        to {
+            translate: -50% 0;
+        }
+    }
+    .wrapper:hover .promo {
+        animation-play-state: paused;
+    }
+    .content {
+        display: inline-flex;
+        gap: var(--promogap);
+        color: var(--black);
+        font-family: "Hawthorn Serif", serif;
+        font-size: var(--l);
+        white-space: pre;
+        padding-right: var(--promogap);
+        padding-bottom: var(--4);
+    }
+    a:hover {
+        color: var(--subaccent);
+    }
+</style>
