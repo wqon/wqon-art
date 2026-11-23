@@ -1,0 +1,233 @@
+---
+import config from "../../config.json";
+import Logotype from "./Logotype.astro";
+---
+
+<nav id="PocketMenu">
+    <label class="pocket" data-cursor="pointer">
+        <input class="toggle" type="checkbox" />
+        <div class="icon" />
+    </label>
+
+    <div class="menu">
+        <Logotype />
+        <div class="wrapper">
+            <label class="mode" data-cursor="pointer">
+                <input class="mode-toggle" type="checkbox" />
+                <span class="left">I’m left-handed!</span>
+                <span class="right">I’m right-handed!</span>
+            </label>
+            <div class="links">
+                {config.menu.header.concat(config.menu.plus).map(
+                    (link) =>
+                        link.active && (
+                            <a
+                                class={
+                                    Astro.url.pathname === link.href
+                                        ? "pageActive"
+                                        : undefined
+                                }
+                                href={
+                                    Astro.url.pathname === link.href
+                                        ? undefined
+                                        : link.href
+                                }
+                                target={link.blank ? "_blank" : "_self"}
+                                data-cursor={
+                                    Astro.url.pathname === link.href
+                                        ? undefined
+                                        : "pointer"
+                                }
+                            >
+                                <span>{link.title}</span>
+                            </a>
+                        ),
+                )}
+            </div>
+        </div>
+    </div>
+</nav>
+
+<style>
+    .toggle {
+        display: none;
+    }
+
+    .pocket,
+    .icon {
+        cursor: pointer;
+    }
+    .pocket {
+        position: relative;
+        display: block;
+        width: max-content;
+        aspect-ratio: 1;
+        background: var(--passive);
+        padding: var(--logopad);
+    }
+    .icon {
+        width: 7px;
+        aspect-ratio: 1;
+        mask-image: url("/assets/pocket_invert.png");
+        mask-size: 7px 63px;
+        mask-position: 0px 0px;
+        mask-repeat: no-repeat;
+        image-rendering: pixelated;
+        zoom: var(--logozoom);
+        background: var(--black);
+        animation: 400ms steps(4, end) forwards toPocket;
+    }
+    @keyframes toPocket {
+        from {
+            mask-position: 0px -28px;
+        }
+        to {
+            mask-position: 0px -56px;
+        }
+    }
+    .toggle:checked ~ .icon {
+        animation: 400ms steps(4, end) forwards toX;
+    }
+    @keyframes toX {
+        from {
+            mask-position: 0px 0px;
+        }
+        to {
+            mask-position: 0px -28px;
+        }
+    }
+    .icon:active {
+        transform: var(--scale);
+    }
+
+    .menu {
+        position: fixed;
+        inset: 0;
+        top: calc(var(--headergap) + 2px);
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        background: linear-gradient(
+            to bottom,
+            rgb(from var(--light) r g b / 50%),
+            rgb(from var(--subpassive) r g b / 50%)
+        );
+        backdrop-filter: grayscale(1) blur(var(--4));
+        border-bottom: var(--border);
+        visibility: hidden;
+        translate: 0 -101%;
+        transition:
+            translate 400ms ease-out,
+            visibility 0ms 400ms allow-discrete;
+    }
+    .pocket:has(.toggle:checked) ~ .menu {
+        visibility: visible;
+        translate: 0 0;
+        transition:
+            translate 400ms ease-out,
+            visibility 0ms allow-discrete;
+    }
+    :global(#Logotype) {
+        flex: 1;
+    }
+    .wrapper {
+        flex: 2;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: flex-end;
+    }
+    .wrapper:has(.mode-toggle:checked) {
+        flex-direction: row-reverse;
+    }
+    .mode-toggle {
+        display: none;
+    }
+    .mode {
+        flex: 1;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .left,
+    .right {
+        color: var(--dark);
+        writing-mode: vertical-rl;
+        font-family: "Hawthorn Serif", serif;
+        font-size: var(--l);
+        opacity: 0.5;
+    }
+    .right {
+        display: none;
+        transform: rotate(180deg);
+    }
+    .mode-toggle:checked ~ .left {
+        display: none;
+    }
+    .mode-toggle:checked ~ .right {
+        display: block;
+    }
+    .links {
+        flex: 3;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        border-left: var(--border);
+    }
+    .wrapper:has(.mode input:checked) .links {
+        border-left: none;
+        border-right: var(--border);
+    }
+    .links a:last-of-type {
+        border-bottom: none;
+    }
+    a {
+        flex: 1;
+        width: 100%;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        font-family: "Mellow Void";
+        font-size: var(--h3);
+        letter-spacing: 2;
+        text-align: right;
+        border-bottom: var(--border);
+        padding-right: var(--32);
+    }
+    .wrapper:has(.mode input:checked) .links a {
+        justify-content: flex-start;
+        padding-left: var(--32);
+        padding-right: 0;
+    }
+    a,
+    a:hover,
+    .pageActive {
+        color: var(--black);
+    }
+    a:hover,
+    .pageActive {
+        background: var(--passive);
+        font-family: "Mellow";
+    }
+    a:active span {
+        transform: var(--negscale);
+    }
+    .pageActive {
+        cursor: default;
+    }
+    .pageActive:active span {
+        transform: none;
+    }
+</style>
+
+<script is:inline>
+    // pocket-mode memory
+    const handmode = document.querySelector(".pocket-mode input");
+
+    handmode.checked = localStorage.getItem("handmodeLeft") === "true";
+
+    handmode.addEventListener("change", () => {
+        localStorage.setItem("handmodeLeft", handmode.checked);
+    });
+</script>
