@@ -8,12 +8,12 @@
     --black: #161860;
     --dark: #020226;
     --void: rgba(0, 0, 0, 0);
-    --h3: clamp(2rem, 0.8571rem + 2.381dvw, 3rem);
-    --h2: clamp(2.5rem, 1.3571rem + 2.381dvw, 3.5rem);
-    --h1: clamp(3rem, 1.8571rem + 2.381dvw, 4rem);
-    --s: clamp(1rem, 0.7143rem + 0.5952dvw, 1.25rem);
-    --m: clamp(1.25rem, 0.9643rem + 0.5952dvw, 1.5rem);
-    --l: clamp(1.5rem, 1.2143rem + 0.5952dvw, 1.75rem);
+    --h3: clamp(2rem, 0.5rem + 3.125vw, 2.5rem);
+    --h2: clamp(2.5rem, 1rem + 3.125vw, 3rem);
+    --h1: clamp(3rem, 1.5rem + 3.125vw, 3.5rem);
+    --s: clamp(0.75rem, 0rem + 1.5625vw, 1rem);
+    --m: clamp(1rem, 0.25rem + 1.5625vw, 1.25rem);
+    --l: clamp(1.25rem, 0.5rem + 1.5625vw, 1.5rem);
     --gap: clamp(0.5rem, -0.0714rem + 1.1905dvw, 1rem);
     --sitegap: clamp(2rem, -0.2857rem + 4.7619dvw, 4rem);
     --logozoom: 6;
@@ -80,14 +80,17 @@ main {
 h3,
 .h3 {
     font-size: var(--h3);
+    margin-bottom: calc(0px - var(--h3) / 4);
 }
 h2,
 .h2 {
     font-size: var(--h2);
+    margin-bottom: calc(0px - var(--h2) / 4);
 }
 h1,
 .h1 {
     font-size: var(--h1);
+    margin-bottom: calc(0px - var(--h1) / 4);
 }
 .s {
     font-size: var(--s);

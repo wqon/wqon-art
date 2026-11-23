@@ -3,6 +3,7 @@ const promo = await fetch("https://files.wqon.art/promo.json").then((res) =>
     res.json(),
 );
 const x = promo.config.x;
+const divider = promo.config.divider;
 ---
 
 <aside id="Promo" class="wrapper">
@@ -10,22 +11,20 @@ const x = promo.config.x;
         <div class="promo" style={`animation-duration: ${promo.config.time}`}>
             {Array.from({ length: x }, () => (
                 <div class="content" aria-label="hidden">
-                    {promo.map(
+                    {promo.links.map(
                         (promo: any) =>
-                            promo.links.active && (
+                            promo.active && (
                                 <>
                                     <a
-                                        href={promo.links.href}
+                                        href={promo.href}
                                         target={
-                                            promo.links.blank
-                                                ? "_blank"
-                                                : "_self"
+                                            promo.blank ? "_blank" : "_self"
                                         }
                                         data-cursor="pointer"
                                     >
-                                        <span>{promo.links.title}</span>
+                                        <span>{promo.title}</span>
                                     </a>
-                                    <span>{promo.config.divider}</span>
+                                    <span>{divider}</span>
                                 </>
                             ),
                     )}
@@ -73,7 +72,7 @@ const x = promo.config.x;
         gap: var(--promogap);
         color: var(--black);
         font-family: "Hawthorn Serif", serif;
-        font-size: var(--l);
+        font-size: var(--m);
         white-space: pre;
         padding-right: var(--promogap);
         padding-bottom: var(--4);
