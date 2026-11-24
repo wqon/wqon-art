@@ -1,45 +1,52 @@
+---
+import config from "../config.json";
+import Newsletter from "../components/footer/Newsletter.astro";
+import Socials from "../components/footer/Socials.astro";
+import Up from "../components/footer/Up.astro";
+
+const year = () => new Date().getFullYear();
+---
+
 <footer>
-    text
-    <p>
-        Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus
-        ex sapien vitae pellentesque sem placerat. In id cursus mi pretium
-        tellus duis convallis. Tempus leo eu aenean sed diam urna tempor.
-        Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis
-        massa nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper
-        vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra
-        inceptos himenaeos. Lorem ipsum dolor sit amet consectetur adipiscing
-        elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id
-        cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam
-        urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum
-        egestas. Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut
-        hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent
-        per conubia nostra inceptos himenaeos. Lorem ipsum dolor sit amet
-        consectetur adipiscing elit. Quisque faucibus ex sapien vitae
-        pellentesque sem placerat. In id cursus mi pretium tellus duis
-        convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus
-        fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada
-        lacinia integer nunc posuere. Ut hendrerit semper vel class aptent
-        taciti sociosqu. Ad litora torquent per conubia nostra inceptos
-        himenaeos. Lorem ipsum dolor sit amet consectetur adipiscing elit.
-        Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus
-        mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna
-        tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas.
-        Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut hendrerit
-        semper vel class aptent taciti sociosqu. Ad litora torquent per conubia
-        nostra inceptos himenaeos. Lorem ipsum dolor sit amet consectetur
-        adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem
-        placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu
-        aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus
-        bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc
-        posuere. Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora
-        torquent per conubia nostra inceptos himenaeos.
-    </p>
+    <Newsletter />
+    <div class="copyright">
+        <span>Copyright © 2020-{year} WQON.</span>
+        <span>All rights reserved.</span>
+    </div>
+    <nav class="menu">
+        {config.menu.footer.map(
+            (link) =>
+                link.active && (
+                    <a
+                        class={
+                            Astro.url.pathname === link.href
+                                ? "pageActive"
+                                : undefined
+                        }
+                        href={
+                            Astro.url.pathname === link.href
+                                ? undefined
+                                : link.href
+                        }
+                        target={link.blank ? "_blank" : "_self"}
+                        data-cursor={
+                            Astro.url.pathname === link.href
+                                ? undefined
+                                : "pointer"
+                        }
+                    >
+                        <span>{link.title}</span>
+                    </a>
+                ),
+        )}
+    </nav>
+    <Socials />
+    <Up />
 </footer>
 
 <style>
     footer {
         background: var(--passive);
-        border-top: var(--border);
         padding: var(--sitegap);
         margin-top: -1px;
     }
