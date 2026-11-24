@@ -1,0 +1,106 @@
+<aside class="border" />
+<aside class="pocket-border" />
+
+<style>
+    /* -------- Z -------- */
+    :global(header.mobile),
+    :global(header.desktop) {
+        z-index: 33;
+    }
+    :global(.border) {
+        z-index: 256;
+    }
+    :global(.cursor) {
+        z-index: 128;
+    }
+    :global(footer) {
+        z-index: 64;
+    }
+    :global(.pocket-border) {
+        z-index: 32;
+    }
+    :global(main > .wrapper) {
+        z-index: 1;
+    }
+    :global(#Logo) {
+        z-index: 4;
+    }
+    :global(#Promo) {
+        z-index: 3;
+    }
+    :global(#PocketMenu .pocket) {
+        z-index: 2;
+    }
+    :global(#PocketMenu .menu) {
+        z-index: 1;
+    }
+
+    @media /* mobile */ (width <= 768px) {
+        .border {
+            display: none;
+        }
+
+        .pocket-border {
+            display: none;
+            position: sticky;
+            top: calc(var(--headergap) + 1px);
+            left: 0;
+            right: 0;
+            border-bottom: var(--border);
+            pointer-events: none;
+            user-select: none;
+        }
+
+        /* -------- BORDERS -------- */
+        :global(header.mobile) {
+            border: var(--border);
+        }
+        :global(#Promo) {
+            border-left: var(--border);
+            border-right: var(--border);
+        }
+        :global(#Logotype) {
+            border-bottom: var(--border);
+        }
+        :global(main.mobile > .wrapper > .content) {
+            border-left: var(--border);
+            border-right: var(--border);
+        }
+        :global(footer) {
+            border: var(--border);
+        }
+    }
+
+    @media /* desktop */ (width > 768px) {
+        .pocket-border {
+            display: none;
+        }
+
+        .border {
+            position: fixed;
+            inset: 0;
+            border: var(--border);
+            pointer-events: none;
+            user-select: none;
+        }
+
+        /* -------- BORDERS -------- */
+        :global(header.desktop) {
+            border: var(--border);
+        }
+        :global(.bar) {
+            box-sizing: content-box;
+            border-top: var(--border);
+            border-bottom: var(--border);
+        }
+        :global(#Logotype) {
+            border-right: var(--border);
+        }
+        :global(main.desktop > .wrapper > .content) {
+            border-right: var(--border);
+        }
+        :global(footer) {
+            border: var(--border);
+        }
+    }
+</style>
