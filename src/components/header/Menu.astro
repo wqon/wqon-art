@@ -2,9 +2,36 @@
 import config from "../../config.json";
 ---
 
-<nav id="Menu" class="wrapper">
-    <div class="menu">
-        {config.menu.header.map(
+<nav id="Menu" class="menu">
+    {config.menu.header.map(
+        (link) =>
+            link.active && (
+                <a
+                    class={
+                        Astro.url.pathname === link.href
+                            ? "pageActive"
+                            : undefined
+                    }
+                    href={
+                        Astro.url.pathname === link.href ? undefined : link.href
+                    }
+                    target={link.blank ? "_blank" : "_self"}
+                    data-cursor={
+                        Astro.url.pathname === link.href ? undefined : "pointer"
+                    }
+                >
+                    <span>{link.title}</span>
+                </a>
+            ),
+    )}
+
+    <label class="plus" data-cursor="pointer">
+        <input class="toggle" type="checkbox" />
+        <div class="icon" />
+    </label>
+
+    <div class="plus-menu">
+        {config.menu.plus.map(
             (link) =>
                 link.active && (
                     <a
@@ -29,49 +56,13 @@ import config from "../../config.json";
                     </a>
                 ),
         )}
-
-        <label class="plus" data-cursor="pointer">
-            <input class="toggle" type="checkbox" />
-            <div class="icon" />
-        </label>
-
-        <div class="plus-menu">
-            {config.menu.plus.map(
-                (link) =>
-                    link.active && (
-                        <a
-                            class={
-                                Astro.url.pathname === link.href
-                                    ? "pageActive"
-                                    : undefined
-                            }
-                            href={
-                                Astro.url.pathname === link.href
-                                    ? undefined
-                                    : link.href
-                            }
-                            target={link.blank ? "_blank" : "_self"}
-                            data-cursor={
-                                Astro.url.pathname === link.href
-                                    ? undefined
-                                    : "pointer"
-                            }
-                        >
-                            <span>{link.title}</span>
-                        </a>
-                    ),
-            )}
-        </div>
     </div>
 </nav>
 
 <style>
-    .wrapper {
-        position: relative;
-    }
-
     .menu {
         height: 100%;
+        position: relative;
         display: flex;
         flex-direction: column;
         background: var(--passive);
@@ -149,19 +140,8 @@ import config from "../../config.json";
             mask-position: 0px -35px;
         }
     }
-    .toggle:not(:checked) ~ .icon {
-        animation: 500ms steps(5, end) forwards toPlus;
-    }
-    @keyframes toPlus {
-        from {
-            mask-position: 0px -35px;
-        }
-        to {
-            mask-position: 0px -70px;
-        }
-    }
     .plus:hover .toggle:not(:checked) ~ .icon {
-        animation: 200ms steps(2, end) forwards toPlusArrow;
+        animation: 200ms steps(2, end) 200ms forwards toPlusArrow;
     }
     @keyframes toPlusArrow {
         from {
@@ -171,7 +151,7 @@ import config from "../../config.json";
             mask-position: 0px -14px;
         }
     }
-    .icon:active {
+    .plus:active .icon {
         transform: var(--scale);
     }
 

@@ -23,24 +23,6 @@ import Menu from "./Menu.astro";
         user-select: none;
     }
 
-    /* -------- Z -------- */
-    .mobile,
-    .desktop {
-        z-index: 33;
-    }
-    :global(#Logo) {
-        z-index: 4;
-    }
-    :global(#Promo) {
-        z-index: 3;
-    }
-    :global(#PocketMenu .pocket) {
-        z-index: 2;
-    }
-    :global(#PocketMenu .menu) {
-        z-index: 1;
-    }
-
     @media /* mobile */ (width <= 768px) {
         .desktop {
             display: none;
@@ -48,21 +30,9 @@ import Menu from "./Menu.astro";
 
         .mobile {
             position: sticky;
-            top: 1px;
+            top: 0px;
             display: grid;
             grid-template: var(--headergap) / auto 1fr auto;
-        }
-
-        /* -------- BORDERS -------- */
-        .mobile {
-            border-bottom: var(--border);
-        }
-        :global(#Promo) {
-            border-left: var(--border);
-            border-right: var(--border);
-        }
-        :global(#Logotype) {
-            border-bottom: var(--border);
         }
     }
 
@@ -74,22 +44,10 @@ import Menu from "./Menu.astro";
         .desktop {
             height: 100svh;
             position: sticky;
-            top: 1px;
+            top: 0px;
             bottom: 1px;
             display: grid;
             grid-template: auto 1fr / var(--headergap);
-        }
-
-        /* -------- BORDERS -------- */
-        .desktop {
-            border-right: var(--border);
-        }
-        :global(#Logotype) {
-            border-right: var(--border);
-        }
-        :global(.bar) {
-            box-sizing: content-box;
-            border-bottom: var(--border);
         }
     }
 </style>

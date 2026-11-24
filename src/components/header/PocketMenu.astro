@@ -97,7 +97,7 @@ import Logotype from "./Logotype.astro";
             mask-position: 0px -28px;
         }
     }
-    .icon:active {
+    .pocket:active .icon {
         transform: var(--scale);
     }
 
@@ -110,10 +110,10 @@ import Logotype from "./Logotype.astro";
         justify-content: space-between;
         background: linear-gradient(
             to bottom,
-            rgb(from var(--light) r g b / 50%),
-            rgb(from var(--subpassive) r g b / 50%)
+            rgb(from var(--passive) r g b / 75%),
+            rgb(from var(--passive) r g b / 75%)
         );
-        backdrop-filter: grayscale(1) blur(var(--4));
+        backdrop-filter: grayscale(1) brightness(100%) blur(var(--4));
         border-bottom: var(--border);
         visibility: hidden;
         translate: 0 -101%;
@@ -207,7 +207,7 @@ import Logotype from "./Logotype.astro";
     }
     a:hover,
     .pageActive {
-        background: var(--passive);
+        background: var(--light);
         font-family: "Mellow";
     }
     a:active span {

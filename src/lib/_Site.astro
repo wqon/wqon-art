@@ -8,7 +8,7 @@ import Promo from "../components/header/Promo.astro";
 import Footer from "../components/Footer.astro";
 import Loader from "../components/Loader.astro";
 import Cursor from "../components/Cursor.astro";
-import Border from "../components/Border.astro";
+import BorderZ from "../components/BorderZ.astro";
 
 const { title, description, theme, canon, ogTitle, ogDescription, ogImage } =
     Astro.props;
@@ -29,35 +29,31 @@ const { title, description, theme, canon, ogTitle, ogDescription, ogImage } =
         ogImage={ogImage}
     />
     <body>
-        <main>
-            <div class="mobile">
-                <div class="wrapper">
-                    <Header />
-                    <div class="content">
-                        <slot />
-                    </div>
+        <main class="mobile">
+            <div class="wrapper">
+                <Header />
+                <div class="content">
+                    <slot />
                 </div>
-                <Footer />
             </div>
+            <Footer />
         </main>
-        <main>
-            <div class="desktop">
-                <div class="wrapper">
-                    <Header />
-                    <div class="content">
-                        <div class="bar">
-                            <Logotype />
-                            <Promo />
-                        </div>
-                        <slot />
+        <main class="desktop">
+            <div class="wrapper">
+                <Header />
+                <div class="content">
+                    <div class="bar">
+                        <Logotype />
+                        <Promo />
                     </div>
+                    <slot />
                 </div>
-                <Footer />
             </div>
+            <Footer />
         </main>
         <Loader />
         <Cursor />
-        <Border />
+        <BorderZ />
     </body>
 </html>
 
@@ -65,23 +61,6 @@ const { title, description, theme, canon, ogTitle, ogDescription, ogImage } =
     .content {
         background: var(--passive);
         color: var(--dark);
-    }
-
-    /* -------- Z -------- */
-    :global(.border) {
-        z-index: 256;
-    }
-    :global(.cursor) {
-        z-index: 128;
-    }
-    :global(footer) {
-        z-index: 64;
-    }
-    :global(.pocket-border) {
-        z-index: 32;
-    }
-    .wrapper {
-        z-index: 1;
     }
 
     @media /* mobile */ (width <= 768px) {
@@ -92,7 +71,6 @@ const { title, description, theme, canon, ogTitle, ogDescription, ogImage } =
         .mobile {
             display: flex;
             flex-direction: column;
-            border: var(--border);
         }
         .wrapper {
             min-height: 100svh;
@@ -112,7 +90,6 @@ const { title, description, theme, canon, ogTitle, ogDescription, ogImage } =
         .desktop {
             display: flex;
             flex-direction: column;
-            border: var(--border);
         }
         .wrapper {
             min-height: 100svh;
@@ -122,7 +99,7 @@ const { title, description, theme, canon, ogTitle, ogDescription, ogImage } =
         .bar {
             height: var(--headergap);
             position: sticky;
-            top: 1px;
+            top: 0px;
             display: grid;
             grid-template: auto / auto 1fr;
         }
