@@ -1,8 +1,8 @@
 ---
-import config from "../config.json";
-import Newsletter from "../components/footer/Newsletter.astro";
-import Socials from "../components/footer/Socials.astro";
-import Up from "../components/footer/Up.astro";
+import config from "../../config.json";
+import Newsletter from "../../components/footer/Newsletter.astro";
+import Socials from "../../components/footer/Socials.astro";
+import Up from "../../components/footer/Up.astro";
 
 const year = () => new Date().getFullYear();
 ---
@@ -46,8 +46,6 @@ const year = () => new Date().getFullYear();
 
 <style>
     footer {
-        background: var(--passive);
-        padding: var(--sitegap);
         margin-top: -1px;
     }
 </style>

@@ -1,5 +1,5 @@
 // pocket-mode memory
-const handmode = document.querySelector("#ModeToggle");
+const handmode = document.querySelector("#setHandMode");
 handmode.checked = localStorage.getItem("handmodeLeft") === "true";
 
 handmode.addEventListener("change", () => {
