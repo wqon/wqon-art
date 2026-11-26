@@ -5,7 +5,7 @@ import Logotype from "./Logotype.astro";
 
 <nav id="PocketMenu">
     <label class="pocket" data-cursor="pointer">
-        <input class="toggle" id="PocketToggle" type="checkbox" />
+        <input class="toggle" type="checkbox" />
         <div class="icon" />
     </label>
 
@@ -13,7 +13,7 @@ import Logotype from "./Logotype.astro";
         <Logotype />
         <div class="wrapper">
             <label class="mode" data-cursor="pointer">
-                <input class="mode-toggle" id="ModeToggle" type="checkbox" />
+                <input class="mode-toggle" id="setHandMode" type="checkbox" />
                 <span class="left">I’m left-handed!</span>
                 <span class="right">I’m right-handed!</span>
             </label>
@@ -201,11 +201,11 @@ import Logotype from "./Logotype.astro";
         padding-right: 0;
     }
     a,
-    a:hover,
+    a:active,
     .pageActive {
         color: var(--black);
     }
-    a:hover,
+    a:active,
     .pageActive {
         background: var(--light);
         font-family: "Mellow";

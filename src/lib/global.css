@@ -26,6 +26,7 @@
     --2: 0.125rem;
     --4: 0.25rem;
     --8: 0.5rem;
+    --12: 0.75rem;
     --16: 1rem;
     --24: 1.5rem;
     --32: 2rem;
@@ -33,8 +34,8 @@
     --64: 4rem;
     --80: 5rem;
     --96: 6rem;
-    --border: 1px solid var(--dark);
-    --r: 32px;
+    --border: var(--1) solid var(--dark);
+    --r: var(--2);
 }
 
 /* -------- CORE -------- */
@@ -72,7 +73,7 @@ body {
     font-size: var(--m);
 }
 main {
-    color: var(--black);
+    color: var(--dark);
     width: 100%;
     max-width: 100svw;
     white-space: normal;
@@ -84,17 +85,20 @@ main {
 h3,
 .h3 {
     font-size: var(--h3);
-    margin-bottom: calc(0px - var(--h3) / 4);
+    line-height: 1.4;
+    margin-bottom: calc(var(--gap) / 4);
 }
 h2,
 .h2 {
     font-size: var(--h2);
-    margin-bottom: calc(0px - var(--h2) / 4);
+    line-height: 1.4;
+    margin-bottom: calc(var(--gap) / 4);
 }
 h1,
 .h1 {
     font-size: var(--h1);
-    margin-bottom: calc(0px - var(--h1) / 4);
+    line-height: 1.4;
+    margin-bottom: calc(var(--gap) / 4);
 }
 .s {
     font-size: var(--s);
@@ -121,7 +125,7 @@ p {
 
 a,
 a:visited {
-    color: var(--black);
+    color: var(--subaccent);
 }
 a {
     display: inline-block;
@@ -129,7 +133,7 @@ a {
     cursor: pointer;
 }
 a:hover {
-    color: var(--subaccent);
+    color: var(--white);
 }
 
 img {
@@ -139,6 +143,57 @@ img {
 }
 .hd {
     image-rendering: smooth;
+}
+form {
+    width: 100%;
+}
+form:hover,
+form:has(input:focus) {
+    background: var(--white);
+    outline: var(--4) solid var(--white);
+    border-radius: var(--r);
+}
+
+input {
+    min-width: 1%;
+    max-width: 100%;
+    background: var(--passive);
+    color: var(--blue);
+    font-family: "Hawthorn Sans", sans-serif;
+    font-size: var(--m);
+    border: var(--border);
+    border-radius: var(--r);
+    padding: 0 var(--16);
+}
+input::placeholder {
+    color: var(--dark);
+    opacity: 0.5;
+}
+input:active {
+    translate: 0 1px;
+}
+input:focus {
+    background: var(--white);
+    outline: none;
+}
+
+button {
+    background: var(--black);
+    color: var(--light);
+    font-family: "Mellow Void", sans-serif;
+    font-size: var(--l);
+    border: var(--border);
+    border-radius: var(--r);
+    padding: 0 var(--16);
+    user-select: none;
+    cursor: pointer;
+}
+button:hover {
+    background: var(--subaccent);
+    font-family: "Mellow", serif;
+}
+button:active {
+    translate: 0 1px;
 }
 
 /* -------- MODS -------- */

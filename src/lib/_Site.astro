@@ -5,7 +5,7 @@ import Head from "../components/Head.astro";
 import Header from "../components/header/_Header.astro";
 import Logotype from "../components/header/Logotype.astro";
 import Promo from "../components/header/Promo.astro";
-import Footer from "../components/Footer.astro";
+import Footer from "../components/footer/_Footer.astro";
 import Loader from "../components/Loader.astro";
 import Cursor from "../components/Cursor.astro";
 import BorderZ from "../components/BorderZ.astro";
@@ -29,16 +29,7 @@ const { title, description, theme, canon, ogTitle, ogDescription, ogImage } =
         ogImage={ogImage}
     />
     <body>
-        <main class="mobile">
-            <div class="wrapper">
-                <Header />
-                <div class="content">
-                    <slot />
-                </div>
-            </div>
-            <Footer />
-        </main>
-        <main class="desktop">
+        <main>
             <div class="wrapper">
                 <Header />
                 <div class="content">
@@ -58,42 +49,26 @@ const { title, description, theme, canon, ogTitle, ogDescription, ogImage } =
 </html>
 
 <style>
+    main {
+        display: flex;
+        flex-direction: column;
+    }
+    .wrapper {
+        min-height: 100svh;
+        display: flex;
+        flex-direction: column;
+    }
+    .bar {
+        display: none;
+    }
     .content {
+        flex: 1;
         background: var(--passive);
         color: var(--dark);
     }
 
-    @media /* mobile */ (width <= 768px) {
-        .desktop {
-            display: none;
-        }
-
-        .mobile {
-            display: flex;
-            flex-direction: column;
-        }
-        .wrapper {
-            min-height: 100svh;
-            display: flex;
-            flex-direction: column;
-        }
-        .content {
-            flex: 1;
-        }
-    }
-
     @media /* desktop */ (width > 768px) {
-        .mobile {
-            display: none;
-        }
-
-        .desktop {
-            display: flex;
-            flex-direction: column;
-        }
         .wrapper {
-            min-height: 100svh;
-            display: flex;
             flex-direction: row;
         }
         .bar {
@@ -105,9 +80,6 @@ const { title, description, theme, canon, ogTitle, ogDescription, ogImage } =
         }
         :global(#Logotype) {
             padding: 0 var(--16);
-        }
-        .content {
-            flex: 1;
         }
     }
 </style>
